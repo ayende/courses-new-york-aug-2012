@@ -3,12 +3,32 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using NewYork.Models;
 using System.Linq;
+using Raven.Client.Document;
 using Raven.Client.Linq;
 
 namespace NewYork.Controllers
 {
 	public class HomeController : RavenController
 	{
+		public ActionResult Dynamic()
+		{
+			var load = Session.Load<dynamic>("users/ayende");
+			return Json(load.Name);
+		}
+
+		public ActionResult Save()
+		{
+			for (var i = 0; i < 7*1024; i++)
+			{
+				Session.Store(new Team
+					{
+						Name = "team #" + i
+					});
+			}
+
+			return Json("Done");
+		}
+
 		public ActionResult Show(int id)
 		{
 			var team = Session
