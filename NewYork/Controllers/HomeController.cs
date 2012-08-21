@@ -39,7 +39,7 @@ namespace NewYork.Controllers
 			Session.Advanced.Eagerly.ExecuteAllPendingLazyOperations();
 			return Json(new
 			{
-				Teams = teams.Value.Select(x=>x.Name),
+				Teams = teams.Value.Select(x => x.Name),
 				player.Value.Name,
 				player.Value.Id
 			});
@@ -47,9 +47,9 @@ namespace NewYork.Controllers
 		public ActionResult Team(string name)
 		{
 			var team = new Team
-				{
-					Name = name
-				};
+				 {
+					 Name = name
+				 };
 			Session.Store(team);
 			return Json(team.Id);
 		}
@@ -57,9 +57,9 @@ namespace NewYork.Controllers
 		public ActionResult Player(string name)
 		{
 			var player = new Player
-				{
-					Name = name
-				};
+			  {
+				  Name = name
+			  };
 			Session.Store(player);
 			return Json(player.Id);
 		}
