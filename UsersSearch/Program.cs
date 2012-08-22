@@ -14,7 +14,7 @@ namespace UsersSearch
 	{
 		static void Main(string[] args)
 		{
-			using(var docStore = new DocumentStore
+			using (var docStore = new DocumentStore
 				{
 					Url = "http://172.16.1.55:8080",
 					DefaultDatabase = "Users"
@@ -27,18 +27,45 @@ namespace UsersSearch
 				{
 					var search = Console.ReadLine();
 
-					using(var session = docStore.OpenSession())
+					using (var session = docStore.OpenSession())
 					{
-						DoQuery(session, search);
+						DoQueryForUnits(session, search);
 					}
 				}
-				
+
 			}
 		}
 
+		private static void DoQueryForUnits(IDocumentSession session, string search)
+		{
+			var result = session.Query<UnitAndPeople_Search.Result, UnitAndPeople_Search>()
+				.Search(x => x.Query, search)
+				.AsProjection<UnitAndPeople_Search.Result>()
+				.FirstOrDefault();
+
+			if (result == null)
+			{
+				Console.WriteLine("nothing found");
+				return;
+			}
+			Console.WriteLine(result.Title);
+
+			//var person = result as Person;
+			//if (person != null)
+			//{
+			//    Console.WriteLine("Call " + person.Phone + " for " + person.Name);
+			//    return;
+			//}
+
+			//var unit = result as Unit;
+			//if(unit != null)
+			//{
+			//    DoQueryForUnits(session, unit.LeasedTo);
+			//}
+		}
 
 
-		private static void DoQuery(IDocumentSession session, string search)
+		private static void DoQueryForUsers(IDocumentSession session, string search)
 		{
 			var q = session.Query<Users_Search.Result, Users_Search>()
 				.Search(x => x.Query, search)
@@ -54,7 +81,7 @@ namespace UsersSearch
 						Console.WriteLine("Nothing found, bummer");
 						break;
 					case 1:
-						DoQuery(session, suggestionQueryResult.Suggestions[0]);
+						DoQueryForUsers(session, suggestionQueryResult.Suggestions[0]);
 						break;
 					default:
 						Console.WriteLine("Did you mean?");
