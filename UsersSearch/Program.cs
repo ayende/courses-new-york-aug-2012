@@ -16,12 +16,13 @@ namespace UsersSearch
 		{
 			using (var docStore = new DocumentStore
 				{
-					Url = "http://172.16.1.55:8080",
+					Url = "http://localhost.fiddler:8080",
 					DefaultDatabase = "Users"
 				}.Initialize())
 			{
 
 				IndexCreation.CreateIndexes(typeof(User).Assembly, docStore);
+
 
 				while (true)
 				{
@@ -29,7 +30,7 @@ namespace UsersSearch
 
 					using (var session = docStore.OpenSession())
 					{
-						DoQueryForUnits(session, search);
+						DoQueryForUsers(session, search);
 					}
 				}
 
@@ -95,6 +96,13 @@ namespace UsersSearch
 			else
 			{
 				Console.WriteLine("{0} {1}", user.Name, user.Email);
+				var documentId = session.Advanced.GetDocumentId(user);
+				session.Advanced.DocumentStore.Changes()
+					.ForDocument(documentId)
+					.Subscribe(notification =>
+						{
+							Console.WriteLine("A document we previously searched on was changed: " + notification.Name);
+						});
 			}
 		}
 	}

@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{02072A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsersSearch", "UsersSearch\UsersSearch.csproj", "{5E69816E-D21D-4C6C-A9CC-67AB12788ECF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tagging", "Tagging\Tagging.csproj", "{8DBBC1F4-7EED-410F-BC05-9C02CBC68444}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +44,16 @@ Global
 		{5E69816E-D21D-4C6C-A9CC-67AB12788ECF}.Release|Mixed Platforms.Build.0 = Release|x86
 		{5E69816E-D21D-4C6C-A9CC-67AB12788ECF}.Release|x86.ActiveCfg = Release|x86
 		{5E69816E-D21D-4C6C-A9CC-67AB12788ECF}.Release|x86.Build.0 = Release|x86
+		{8DBBC1F4-7EED-410F-BC05-9C02CBC68444}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{8DBBC1F4-7EED-410F-BC05-9C02CBC68444}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{8DBBC1F4-7EED-410F-BC05-9C02CBC68444}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{8DBBC1F4-7EED-410F-BC05-9C02CBC68444}.Debug|x86.ActiveCfg = Debug|x86
+		{8DBBC1F4-7EED-410F-BC05-9C02CBC68444}.Debug|x86.Build.0 = Debug|x86
+		{8DBBC1F4-7EED-410F-BC05-9C02CBC68444}.Release|Any CPU.ActiveCfg = Release|x86
+		{8DBBC1F4-7EED-410F-BC05-9C02CBC68444}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{8DBBC1F4-7EED-410F-BC05-9C02CBC68444}.Release|Mixed Platforms.Build.0 = Release|x86
+		{8DBBC1F4-7EED-410F-BC05-9C02CBC68444}.Release|x86.ActiveCfg = Release|x86
+		{8DBBC1F4-7EED-410F-BC05-9C02CBC68444}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
