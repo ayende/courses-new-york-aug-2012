@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using NewYork.Models;
 using System.Linq;
+using Raven.Abstractions.Data;
 using Raven.Client.Document;
 using Raven.Client.Linq;
 
@@ -10,6 +11,22 @@ namespace NewYork.Controllers
 {
 	public class HomeController : RavenController
 	{
+		public ActionResult Patch()
+		{
+			DocumentStore.DatabaseCommands.UpdateByIndex("Raven/DocumentsByEntityName",
+				new IndexQuery
+					{
+						Query = "Tag:Teams"
+					}, new ScriptedPatchRequest
+						{
+							Script = @"
+this.Name = this.Name.replace('team #', '');
+"
+						});
+
+			return Json("Okay");
+		}
+
 		public ActionResult Dynamic()
 		{
 			var load = Session.Load<dynamic>("users/ayende");

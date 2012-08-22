@@ -7,6 +7,12 @@ namespace NewYork.Controllers
 {
 	public class AuctionController : RavenController
 	{
+		public ActionResult Strange()
+		{
+			Session.Advanced.LoadStartingWith<Bid>("customers/1/cars");
+			
+			return Json("In a Strange Land");
+		}
 		 public ActionResult Create()
 		 {
 			 var auction = new Auction
